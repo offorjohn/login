@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// eslint-disable-next-line no-unused-vars
 var token="";
 var rooturl="https://otpninja.com/api/v1/";
 function login(username,password){
@@ -11,14 +12,13 @@ function login(username,password){
     })
 }
 
-function listpayments(type,token){
+async function listpayments(type,token){
     var url=rooturl+"listpayments?type="+type
     var headers={"X-OTPNINJA-TOKEN":token};
     console.log(headers)
-    return axios.get(url,{headers:headers}).then(res=>{
-        console.log(res)
-        return res.data;
-    })
+    const res = await axios.get(url, { headers: headers });
+    console.log(res);
+    return res.data;
 }
 
 export {login,listpayments}
